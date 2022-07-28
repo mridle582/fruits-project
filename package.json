@@ -1,0 +1,19 @@
+{
+  "name": "fruits-project",
+  "version": "1.0.0",
+  "description": "A fruit database written with NodeJS and MongoDB.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mridle582/fruits-project.git"
+  },
+  "author": "James Finn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mridle582/fruits-project/issues"
+  },
+  "homepage": "https://github.com/mridle582/fruits-project#readme"
+}
