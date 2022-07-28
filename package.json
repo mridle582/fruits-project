@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mridle582/fruits-project/issues"
   },
-  "homepage": "https://github.com/mridle582/fruits-project#readme"
+  "homepage": "https://github.com/mridle582/fruits-project#readme",
+  "dependencies": {
+    "mongoose": "^6.5.0"
+  }
 }
