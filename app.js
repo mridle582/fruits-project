@@ -4,7 +4,7 @@ main().catch(err => console.log(err));
 
 async function main() {
     mongoose.connect("mongodb://0.0.0.0:27017/fruitsDB", { useNewUrlParser: true });
-    console.log("Connected");
+    // console.log("Connected to DB\n");
 
     const fruitSchema = new mongoose.Schema ({
         name: String,
@@ -14,6 +14,16 @@ async function main() {
 
     const Fruit = mongoose.model("Fruit", fruitSchema);
 
+    Fruit.find((err, fruits) => {
+        // mongoose.connection.close(); 
+        fruits.forEach((cFruit) => {
+            console.log(cFruit.name);
+        });
+        mongoose.connection.close(); 
+    });
+    
+    // console.log(`The Contents of Fruits Collection:\n\n${fruits}`);
+
     // const fruit = new Fruit({
     //     name: "Apple",
     //     rating: 7,
@@ -22,25 +32,25 @@ async function main() {
 
     // fruit.save();
 
-    const kiwi = new Fruit({
-        name: "Kiwi",
-        score: 10,
-        review: "The Best Fruit!!"
-    });
+    // const kiwi = new Fruit({
+    //     name: "Kiwi",
+    //     score: 10,
+    //     review: "The Best Fruit!!"
+    // });
 
-    const orange = new Fruit({
-        name: "Orange",
-        score: 4,
-        review: "Too sour for me"
-    });
+    // const orange = new Fruit({
+    //     name: "Orange",
+    //     score: 4,
+    //     review: "Too sour for me"
+    // });
     
-    const banana = new Fruit({
-        name: "Banana",
-        score: 3,
-        review: "Weird texture"
-    });
+    // const banana = new Fruit({
+    //     name: "Banana",
+    //     score: 3,
+    //     review: "Weird texture"
+    // });
 
-    Fruit.insertMany([kiwi, orange, banana]);
+    // Fruit.insertMany([kiwi, orange, banana]);
 
     // const personSchema = new mongoose.Schema ({
     //     name: String,
@@ -57,14 +67,3 @@ async function main() {
     // person.save();
 
 }
-
-// async function main() {
-//     mongoose.connect("mongodb://0.0.0.0:27017/fruitsDB", { useNewUrlParser: true });
-//     console.log("Connected");
-
-
-
-//     fruit.save();
-
-//     // const fruit = mongoose.model('Fruit', {'Cat', { name: String, score:  }})
-// }
