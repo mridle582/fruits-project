@@ -3,31 +3,52 @@ const mongoose = require("mongoose");
 main().catch(err => console.log(err));
 
 async function main() {
-    mongoose.connect("mongodb://0.0.0.0:27017/fruitsDB", { useNewUrlParser: true });
+    mongoose.connect("mongodb://0.0.0.0:27017/fruitsDB", {
+        useNewUrlParser: true
+    });
     // console.log("Connected to DB\n");
 
-    const fruitSchema = new mongoose.Schema ({
-        name: String,
-        rating: Number,
+    const fruitSchema = new mongoose.Schema({
+        name: {
+            type: String,
+            required: true
+        },
+        rating: {
+            type: Number,
+            min: 1,
+            max: 10
+        },
         review: String
     });
 
     const Fruit = mongoose.model("Fruit", fruitSchema);
 
+
+
+    // Fruit.deleteOne({
+    //     _id: "62e58a5dd8f76725b5ed8c21"
+    // }, (err) => {
+    //     err ? console.log(err) : console.log("Deleted record");
+    // });
+
     Fruit.find((err, fruits) => {
-        // mongoose.connection.close(); 
-        fruits.forEach((cFruit) => {
-            console.log(cFruit.name);
-        });
-        mongoose.connection.close(); 
+
+        if (err) {
+            console.log(err);
+        } else {
+            fruits.forEach((cFruit) => {
+                console.log(cFruit);
+            });
+            mongoose.connection.close();
+        }
     });
-    
+
     // console.log(`The Contents of Fruits Collection:\n\n${fruits}`);
 
     // const fruit = new Fruit({
-    //     name: "Apple",
-    //     rating: 7,
-    //     review: "Pretty Solid Fruit"
+    //     name: "Peach",
+    //     rating: 8,
+    //     review: "Quite round :^D"
     // });
 
     // fruit.save();
@@ -43,7 +64,7 @@ async function main() {
     //     score: 4,
     //     review: "Too sour for me"
     // });
-    
+
     // const banana = new Fruit({
     //     name: "Banana",
     //     score: 3,
