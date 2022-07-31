@@ -23,7 +23,45 @@ async function main() {
 
     const Fruit = mongoose.model("Fruit", fruitSchema);
 
+    const personSchema = new mongoose.Schema ({
+        name: String,
+        age: Number,
+        favFruit: fruitSchema
+    });
 
+    const Person = mongoose.model("Person", personSchema);
+
+    const plum = new Fruit({
+        name: "Plum",
+        score: 5,
+        review: "Meh imo"
+    });
+
+    // Fruit.deleteOne({name: "Plum"}, (err) => {
+    //     err ? console.log(err) : console.log("Deleted record");
+    // });
+
+    // pineapple.save();
+    plum.save();
+
+    // Person.deleteOne({name: "Amy"}, (err) => {
+    //         err ? console.log(err) : console.log("Deleted record");
+    // });
+
+    // const person = new Person({
+    //     name: "Amy",
+    //     age: 12,
+    //     favFruit: pineapple
+    // });
+
+    // person.save();
+
+    Person.updateOne({name:"John"}, {favFruit: plum}, (err) => {
+        err ? console.log(err) : console.log("Updated record");
+    });
+
+    // mongoose.connection.close();
+}
 
     // Fruit.deleteOne({
     //     _id: "62e58a5dd8f76725b5ed8c21"
@@ -31,17 +69,17 @@ async function main() {
     //     err ? console.log(err) : console.log("Deleted record");
     // });
 
-    Fruit.find((err, fruits) => {
+    // Fruit.find((err, fruits) => {
 
-        if (err) {
-            console.log(err);
-        } else {
-            fruits.forEach((cFruit) => {
-                console.log(cFruit);
-            });
-            mongoose.connection.close();
-        }
-    });
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         fruits.forEach((cFruit) => {
+    //             console.log(cFruit);
+    //         });
+    //         mongoose.connection.close();
+    //     }
+    // });
 
     // console.log(`The Contents of Fruits Collection:\n\n${fruits}`);
 
@@ -72,19 +110,3 @@ async function main() {
     // });
 
     // Fruit.insertMany([kiwi, orange, banana]);
-
-    // const personSchema = new mongoose.Schema ({
-    //     name: String,
-    //     age: Number
-    // });
-
-    // const Person = mongoose.model("Person", personSchema);
-
-    // const person = new Person({
-    //     name: "John",
-    //     age: 37
-    // });
-
-    // person.save();
-
-}
